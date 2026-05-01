@@ -1,33 +1,15 @@
-# secrets
+# Environment
 .env
-.env.local
-*.pem
-*.key
-
-# deps
-node_modules/
-.pnpm-store/
-.venv/
-venv/
 __pycache__/
 *.pyc
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
 
-# build
-dist/
-build/
-*.tsbuildinfo
+# ChromaDB (large, can be rebuilt)
+chroma_db/
 
-# editor / os
-.DS_Store
-.idea/
-.vscode/
-Thumbs.db
-
-# local data / caches the participant may create
-data/index/
-data/embeddings/
-*.sqlite
-*.db
+# Temp files
+*.tmp
+test_models.py
+check_accuracy.py
+verify.py
+output2.csv
+output_old.csv
