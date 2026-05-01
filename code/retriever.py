@@ -35,10 +35,14 @@ def _chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OV
 
 def _infer_product_area(filepath: Path) -> str:
     """Infer product_area from the file path (e.g. data/hackerrank/screen/ → 'screen')."""
-    parts = filepath.parts
-    # parts looks like: ('data', 'hackerrank', 'screen', 'something.md')
-    if len(parts) >= 3:
-        return parts[2]  # subfolder name
+    try:
+        rel = filepath.relative_to(DATA_DIR)
+        parts = rel.parts
+        # parts looks like: ('hackerrank', 'screen', 'something.md')
+        if len(parts) >= 3:
+            return parts[1]  # subfolder name under company dir
+    except ValueError:
+        pass
     return "general"
 
 def build_index(force_rebuild: bool = False):
