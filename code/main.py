@@ -7,9 +7,9 @@ from agent import triage
 from config import TICKETS_PATH, OUTPUT_PATH, LOG_PATH
 
 # Match sample_support_tickets.csv column names exactly
-OUTPUT_COLUMNS = ["Issue", "Subject", "Company", "Response", "Product Area", "Status", "Request Type"]
+OUTPUT_COLUMNS = ["Issue", "Subject", "Company", "Response", "Product Area", "Status", "Request Type", "Justification"]
 # Internal keys from agent output
-AGENT_KEYS = {"response": "Response", "product_area": "Product Area", "status": "Status", "request_type": "Request Type"}
+AGENT_KEYS = {"response": "Response", "product_area": "Product Area", "status": "Status", "request_type": "Request Type", "justification": "Justification"}
 
 
 def main():
@@ -70,6 +70,7 @@ def main():
             "Product Area": str(result.get("product_area", "")).replace('"', "'").replace("\n", " "),
             "Status": str(result.get("status", "")).replace('"', "'").replace("\n", " ").capitalize(),
             "Request Type": str(result.get("request_type", "")).replace('"', "'").replace("\n", " "),
+            "Justification": str(result.get("justification", "")).replace('"', "'").replace("\n", " "),
         }
 
         row_values = [out_row[col] for col in OUTPUT_COLUMNS]
